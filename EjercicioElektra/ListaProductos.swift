@@ -22,7 +22,7 @@ struct ListaProductos: View {
                         .progressViewStyle(.circular)
                 } else if let errorMessage = viewModel.mensajeDeError {
                     Text(errorMessage)
-                        .foregroundColor(.red)
+                        .foregroundStyle(.red)
                         .padding()
                 } else {
                     List(viewModel.productos) { producto in

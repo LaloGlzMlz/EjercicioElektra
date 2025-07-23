@@ -32,7 +32,7 @@ struct ListaProductos: View {
                                     .bold()
                                 Spacer()
                                 Image(systemName: "checkmark.circle.fill")
-                                    .foregroundStyle(Color.accentColor)
+                                    .foregroundColor(.accentColor)
                             }
                         } else {
                             Text(producto.nombre)

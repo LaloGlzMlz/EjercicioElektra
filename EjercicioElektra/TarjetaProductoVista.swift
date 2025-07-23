@@ -37,6 +37,8 @@ struct TarjetaProductoVista: View {
                         image
                             .resizable()
                             .scaledToFit()
+                            .cornerRadius(15)
+                            .shadow(color: Color.black.opacity(0.1), radius: 4)
                     } placeholder: {
                         ProgressView()
                     }

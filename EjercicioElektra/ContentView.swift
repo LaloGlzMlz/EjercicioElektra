@@ -16,28 +16,47 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
+            VStack {
                 if let producto = productoMostrado {
                     ScrollView {
                         TarjetaProductoVista(producto: producto)
                             .padding()
                     }
                 } else {
-                    Spacer()
-                    Text("Selecciona un producto de la lista para visualizarlo aqui.")
-                    Spacer()
+                    VStack {
+                        
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .overlay {
+                        if productoMostrado == nil {
+                            ContentUnavailableView(label: {
+                                Label("Producto no seleccionado", systemImage: "list.clipboard.fill")
+                            }, description: {
+                                Text("Selecciona un producto para visualizar su información aquí.")
+                            }, actions: {
+                                Button("Ver productos") {
+                                    viewModel.recuperarProductos()
+                                    mostrandoPantallaProductos.toggle()
+                                }
+                                .buttonStyle(.borderedProminent)
+                            })
+                            .offset(y: -30)
+                        }
+                    }
                 }
-            
-            
-            Button("Ver productos") {
-                viewModel.recuperarProductos()
-                mostrandoPantallaProductos.toggle()
             }
-            .padding()
-            .buttonStyle(.borderedProminent)
             .sheet(isPresented: $mostrandoPantallaProductos) {
                 ListaProductos(viewModel: viewModel, productoSeleccionado: $productoMostrado)
             }
             .navigationTitle("Ejercicio")
+            
+            if productoMostrado != nil {
+                Button("Ver productos") {
+                    viewModel.recuperarProductos()
+                    mostrandoPantallaProductos.toggle()
+                }
+                .buttonStyle(.borderedProminent)
+            }
         }
     }
 }

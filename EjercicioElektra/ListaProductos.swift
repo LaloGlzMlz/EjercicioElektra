@@ -8,18 +8,53 @@
 import SwiftUI
 
 struct ListaProductos: View {
-    let productos: [Producto]
+    @Environment(\.dismiss) private var dismiss
+    
+    let viewModel: ProductoViewModel
+    
+    @Binding var productoSeleccionado: Producto?
     
     var body: some View {
-        ScrollView {
-            ForEach(productos) { producto in
-                TarjetaProductoVista(producto: producto)
-                    .padding()
+        NavigationStack {
+            VStack {
+                if viewModel.estaCargando {
+                    ProgressView("Cargando...")
+                        .progressViewStyle(.circular)
+                } else if let errorMessage = viewModel.mensajeDeError {
+                    Text(errorMessage)
+                        .foregroundColor(.red)
+                        .padding()
+                } else {
+                    List(viewModel.productos) { producto in
+                        if productoSeleccionado?.id == producto.id {
+                            HStack {
+                                Text(producto.nombre)
+                                    .bold()
+                                Spacer()
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundStyle(Color.accentColor)
+                            }
+                        } else {
+                            Text(producto.nombre)
+                                .onTapGesture {
+                                    productoSeleccionado = producto
+                                    dismiss()
+                                }
+                        }
+                    }
+                }
+            }
+            .navigationTitle("Productos")
+            .toolbar {
+                ToolbarItemGroup(placement: .topBarLeading) {
+                    Button("Cerrar") { dismiss() }
+                }
             }
         }
     }
 }
 
-#Preview {
-    ListaProductos(productos: [Producto(id: "1", nombre: "NintendoSwitch", codigoCategoria: "N", precioRegular: 500, urlImagenes: [URL(string: "https://assets.nintendo.eu/image/private/f_auto,c_limit,w_1920,q_auto:low/odxx8ysoourxkmjhb00e")!, URL(string: "https://i.ytimg.com/vi/CH8MWz8fCOk/maxresdefault.jpg")!]), Producto(id: "1", nombre: "NintendoSwitch", codigoCategoria: "N", precioRegular: 500, urlImagenes: [URL(string: "https://assets.nintendo.eu/image/private/f_auto,c_limit,w_1920,q_auto:low/odxx8ysoourxkmjhb00e")!, URL(string: "https://i.ytimg.com/vi/CH8MWz8fCOk/maxresdefault.jpg")!])])
-}
+
+//#Preview {
+//    ListaProductos(viewModel: ProductoViewModel())
+//}

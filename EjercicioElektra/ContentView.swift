@@ -16,28 +16,26 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                Spacer()
                 if let producto = productoMostrado {
                     ScrollView {
                         TarjetaProductoVista(producto: producto)
                             .padding()
                     }
                 } else {
+                    Spacer()
                     Text("Selecciona un producto de la lista para visualizarlo aqui.")
+                    Spacer()
                 }
-                
-                Spacer()
-                
-                Button("Ver productos") {
-                    viewModel.recuperarProductos()
-                    mostrandoPantallaProductos.toggle()
-                }
-                .padding()
-                .buttonStyle(.borderedProminent)
-                .sheet(isPresented: $mostrandoPantallaProductos) {
-                    ListaProductos(viewModel: viewModel, productoSeleccionado: $productoMostrado)
-                }
+            
+            
+            Button("Ver productos") {
+                viewModel.recuperarProductos()
+                mostrandoPantallaProductos.toggle()
+            }
+            .padding()
+            .buttonStyle(.borderedProminent)
+            .sheet(isPresented: $mostrandoPantallaProductos) {
+                ListaProductos(viewModel: viewModel, productoSeleccionado: $productoMostrado)
             }
             .navigationTitle("Ejercicio")
         }

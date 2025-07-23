@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TarjetaProductoVista: View {
+struct ProductoTarjeta: View {
     @Environment(\.colorScheme) var colorScheme
     
     let producto: Producto
@@ -66,5 +66,5 @@ struct TarjetaProductoVista: View {
 
 
 #Preview {
-    TarjetaProductoVista(producto: Producto(id: "1", nombre: "NintendoSwitch", codigoCategoria: "N", precioRegular: 500, urlImagenes: [URL(string: "https://assets.nintendo.eu/image/private/f_auto,c_limit,w_1920,q_auto:low/odxx8ysoourxkmjhb00e")!, URL(string: "https://i.ytimg.com/vi/CH8MWz8fCOk/maxresdefault.jpg")!]))
+    ProductoTarjeta(producto: Producto(id: "1", nombre: "NintendoSwitch", codigoCategoria: "N", precioRegular: 500, urlImagenes: [URL(string: "https://assets.nintendo.eu/image/private/f_auto,c_limit,w_1920,q_auto:low/odxx8ysoourxkmjhb00e")!, URL(string: "https://i.ytimg.com/vi/CH8MWz8fCOk/maxresdefault.jpg")!]))
 }

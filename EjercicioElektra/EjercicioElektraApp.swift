@@ -11,7 +11,7 @@ import SwiftUI
 struct EjercicioElektraApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            PantallaPrincipal()
         }
     }
 }

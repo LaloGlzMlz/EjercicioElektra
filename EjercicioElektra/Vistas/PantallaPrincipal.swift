@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct PantallaPrincipal: View {
     @State var viewModel = ProductoViewModel()
     
     @State var mostrandoPantallaProductos = false
@@ -19,7 +19,7 @@ struct ContentView: View {
             VStack {
                 if let producto = productoMostrado {
                     ScrollView {
-                        TarjetaProductoVista(producto: producto)
+                        ProductoTarjeta(producto: producto)
                             .padding()
                     }
                 } else {
@@ -66,5 +66,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(productoMostrado: Producto(id: "1", nombre: "NintendoSwitch", codigoCategoria: "N", precioRegular: 500, urlImagenes: [URL(string: "https://assets.nintendo.eu/image/private/f_auto,c_limit,w_1920,q_auto:low/odxx8ysoourxkmjhb00e")!, URL(string: "https://i.ytimg.com/vi/CH8MWz8fCOk/maxresdefault.jpg")!]))
+    PantallaPrincipal(productoMostrado: Producto(id: "1", nombre: "NintendoSwitch", codigoCategoria: "N", precioRegular: 500, urlImagenes: [URL(string: "https://assets.nintendo.eu/image/private/f_auto,c_limit,w_1920,q_auto:low/odxx8ysoourxkmjhb00e")!, URL(string: "https://i.ytimg.com/vi/CH8MWz8fCOk/maxresdefault.jpg")!]))
 }

@@ -27,18 +27,10 @@ struct ContentView: View {
                     Spacer()
                     
                 } else {
-                    
-                    List(viewModel.productos) { producto in
-                        Text(producto.nombre)
-                        ForEach(producto.urlImagenes, id: \.self) { imagen in
-                            AsyncImage(url: imagen) { image in
-                                image
-                                    .resizable()
-                                    .scaledToFit()
-                            } placeholder: {
-                                ProgressView()
-                            }
-                            .frame(width: 100, height: 100)
+                    ScrollView {
+                        ForEach(viewModel.productos) { producto in
+                            TarjetaProductoVista(producto: producto)
+                                .padding()
                         }
                     }
                 }

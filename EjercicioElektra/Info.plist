@@ -7,7 +7,7 @@
         <dict/>
     </array>
 
-    <!-- agregado para hacer ignorar error de llamada no segura por http -->
+    <!-- agregado para ignorar error de llamada no segura por http -->
     <key>NSAppTransportSecurity</key>
     <dict>
         <key>NSAllowsArbitraryLoads</key>
@@ -15,4 +15,3 @@
     </dict>
 </dict>
 </plist>
-b

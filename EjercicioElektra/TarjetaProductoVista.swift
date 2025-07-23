@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TarjetaProductoVista: View {
+    @Environment(\.colorScheme) var colorScheme
+    
     let producto: Producto
     
     var body: some View {
@@ -17,11 +19,12 @@ struct TarjetaProductoVista: View {
                     Text(producto.nombre)
                         .font(.title)
                         .bold()
+                        .foregroundColor(colorScheme == .dark ? .black : .primary)
                     
                     Text("Categoría: \(producto.codigoCategoria)")
                         .padding(.top, 3)
                         .font(.subheadline)
-                        .foregroundColor(.secondary)
+                        .foregroundColor(.gray)
                 }
                 
                 Spacer()
@@ -29,6 +32,7 @@ struct TarjetaProductoVista: View {
                 Text("$ \(producto.precioRegular)")
                     .bold()
                     .font(.title2)
+                    .foregroundColor(colorScheme == .dark ? .black : .primary)
             }
             
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
@@ -51,7 +55,7 @@ struct TarjetaProductoVista: View {
         .background(
             RoundedRectangle(cornerRadius: 15)
                 .fill(
-                    LinearGradient(gradient: Gradient(colors: [Color.white, Color.yellow]),
+                    LinearGradient(gradient: Gradient(colors: [Color.white, Color.red.opacity(0.65)]),
                                    startPoint: .topLeading,
                                    endPoint: .bottomTrailing)
                 )

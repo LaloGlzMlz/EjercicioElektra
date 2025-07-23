@@ -39,8 +39,9 @@ struct ContentView: View {
                                     mostrandoPantallaProductos.toggle()
                                 }
                                 .buttonStyle(.borderedProminent)
+                                .controlSize(.regular)
                             })
-                            .offset(y: -30)
+                            .offset(y: -40)
                         }
                     }
                 }
@@ -48,7 +49,9 @@ struct ContentView: View {
             .sheet(isPresented: $mostrandoPantallaProductos) {
                 ListaProductos(viewModel: viewModel, productoSeleccionado: $productoMostrado)
             }
-            .navigationTitle("Ejercicio")
+            .navigationTitle("Elektra")
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarBackground(.yellow.opacity(0.6), for: .navigationBar)
             
             if productoMostrado != nil {
                 Button("Ver productos") {
@@ -56,6 +59,7 @@ struct ContentView: View {
                     mostrandoPantallaProductos.toggle()
                 }
                 .buttonStyle(.borderedProminent)
+                .controlSize(.regular)
             }
         }
     }

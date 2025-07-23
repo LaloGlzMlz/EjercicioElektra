@@ -28,18 +28,42 @@ struct ListaProductos: View {
                     List(viewModel.productos) { producto in
                         if productoSeleccionado?.id == producto.id {
                             HStack {
+                                AsyncImage(url: producto.urlImagenes[0]) { image in
+                                    image
+                                        .resizable()
+                                        .scaledToFit()
+                                        .cornerRadius(15)
+                                } placeholder: {
+                                    ProgressView()
+                                }
+                                .frame(width: 50)
+                                
                                 Text(producto.nombre)
                                     .bold()
+                                
                                 Spacer()
+                                
                                 Image(systemName: "checkmark.circle.fill")
                                     .foregroundColor(.accentColor)
                             }
                         } else {
-                            Text(producto.nombre)
-                                .onTapGesture {
-                                    productoSeleccionado = producto
-                                    dismiss()
+                            HStack {
+                                AsyncImage(url: producto.urlImagenes[0]) { image in
+                                    image
+                                        .resizable()
+                                        .scaledToFit()
+                                        .cornerRadius(5)
+                                } placeholder: {
+                                    ProgressView()
                                 }
+                                .frame(width: 50)
+                                
+                                Text(producto.nombre)
+                                    .onTapGesture {
+                                        productoSeleccionado = producto
+                                        dismiss()
+                                    }
+                            }
                         }
                     }
                 }

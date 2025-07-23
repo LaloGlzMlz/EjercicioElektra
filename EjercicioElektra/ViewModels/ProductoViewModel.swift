@@ -23,8 +23,8 @@ class ProductoViewModel {
             estaCargando = true
             
             do {
-                let fetchedProductos = try await productoServicio.fetchProductos()
-                productos = fetchedProductos
+                let productosRecuperados = try await productoServicio.fetchProductos()
+                productos = productosRecuperados
             } catch {
                 mensajeDeError = "Failed to fetch products: \(error.localizedDescription)"
             }

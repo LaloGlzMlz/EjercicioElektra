@@ -17,6 +17,7 @@ struct PantallaPrincipal: View {
     var body: some View {
         NavigationStack {
             VStack {
+                // Mostrar producto si tiene valor productoMostrado, el valor se asigna en el modal
                 if let producto = productoMostrado {
                     ScrollView {
                         ProductoTarjeta(producto: producto)
@@ -24,9 +25,10 @@ struct PantallaPrincipal: View {
                     }
                 } else {
                     VStack {
-                        
+                        // VStack vacio solo para dar dimensiones suficientes para mostrar overlay cuando
+                        // no hay producto seleccionado
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity) // Da espacio para overlay cuando no hay contenido
                     .overlay {
                         if productoMostrado == nil {
                             ContentUnavailableView(label: {
@@ -35,7 +37,7 @@ struct PantallaPrincipal: View {
                                 Text("Selecciona un producto para visualizar su información aquí.")
                             }, actions: {
                                 Button("Ver productos") {
-                                    viewModel.recuperarProductos()
+                                    viewModel.obtenerProductos()
                                     mostrandoPantallaProductos.toggle()
                                 }
                                 .buttonStyle(.borderedProminent)
@@ -55,7 +57,7 @@ struct PantallaPrincipal: View {
             
             if productoMostrado != nil {
                 Button("Ver productos") {
-                    viewModel.recuperarProductos()
+                    viewModel.obtenerProductos() // Llamada para obtener productos de API
                     mostrandoPantallaProductos.toggle()
                 }
                 .buttonStyle(.borderedProminent)

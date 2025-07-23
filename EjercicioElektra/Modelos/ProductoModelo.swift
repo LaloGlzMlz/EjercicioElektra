@@ -10,13 +10,11 @@ import Foundation
 // Respuesta entera
 struct ProductoRespuesta: Decodable {
     let mensaje: String
-    let advertencia: String
     let resultado: Resultado
 }
 
 // Key 'resultado' en respuesta entera
 struct Resultado: Decodable {
-    let categoria: String
     let productos: [Producto]
 }
 

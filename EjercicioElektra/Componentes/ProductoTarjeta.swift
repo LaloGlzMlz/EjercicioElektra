@@ -22,7 +22,7 @@ struct ProductoTarjeta: View {
                         .foregroundColor(colorScheme == .dark ? .black : .primary)
                     
                     Text("Categoría: \(producto.codigoCategoria)")
-                        .padding(.top, 3)
+                        .padding(.top, 2)
                         .font(.subheadline)
                         .foregroundColor(.gray)
                 }

@@ -16,17 +16,17 @@ class ProductoViewModel {
     
     private let productoServicio = ProductoServicio()
     
-    func recuperarProductos() {
+    func obtenerProductos() {
         Task {
             mensajeDeError = nil
             productos = []
             estaCargando = true
             
             do {
-                let productosRecuperados = try await productoServicio.fetchProductos()
-                productos = productosRecuperados
+                let productosObtenidos = try await productoServicio.fetchProductos()
+                productos = productosObtenidos
             } catch {
-                mensajeDeError = "Failed to fetch products: \(error.localizedDescription)"
+                mensajeDeError = "No se pudieron obtener los productos: \(error.localizedDescription)"
             }
             
             // ya no esta cargando

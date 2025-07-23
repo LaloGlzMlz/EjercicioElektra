@@ -17,6 +17,7 @@ struct ListaProductos: View {
     var body: some View {
         NavigationStack {
             VStack {
+                // Mostrar progress view mientras se esta haciendo la llamada a la API
                 if viewModel.estaCargando {
                     ProgressView("Cargando...")
                         .progressViewStyle(.circular)
@@ -26,6 +27,8 @@ struct ListaProductos: View {
                         .padding()
                 } else {
                     List(viewModel.productos) { producto in
+                        // Si este producto en la lista tiene el mismo id que el seleccionado,
+                        // negritas e icono de palomita para indicar producto seleccionado.
                         if productoSeleccionado?.id == producto.id {
                             HStack {
                                 AsyncImage(url: producto.urlImagenes[0]) { image in
@@ -47,6 +50,9 @@ struct ListaProductos: View {
                                     .foregroundColor(.accentColor)
                             }
                         } else {
+                            
+                            // Si este producto en la lista tiene id distinto al seleccionado,
+                            // se muestra como producto normal en la lista (sin seleccionar).
                             HStack {
                                 AsyncImage(url: producto.urlImagenes[0]) { image in
                                     image
@@ -60,6 +66,7 @@ struct ListaProductos: View {
                                 
                                 Text(producto.nombre)
                                     .onTapGesture {
+                                        // Gesture para hacer que al tocar este renglon, el producto seleccionado se vuelva este producto
                                         productoSeleccionado = producto
                                         dismiss()
                                     }
@@ -77,8 +84,3 @@ struct ListaProductos: View {
         }
     }
 }
-
-
-//#Preview {
-//    ListaProductos(viewModel: ProductoViewModel())
-//}
